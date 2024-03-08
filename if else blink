@@ -1,0 +1,24 @@
+import RPi.GPIO as GPIO
+import time
+
+blink_led = 5
+in_button = 40
+GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False)
+GPIO.setup(blink_led, GPIO.OUT)
+GPIO.setup(in_button, GPIO.IN)
+in_value = 0
+
+while True:
+    in_value = GPIO.input(in_button)
+    count = 0
+    if in_value == 1:
+        for i in range(10):
+            GPIO.output(5,1)
+            time.sleep(0.5)
+            GPIO.output(5,0)
+            time.sleep(0.5)
+    else:
+        GPIO.output(blink_led, in_value)
+    
+
